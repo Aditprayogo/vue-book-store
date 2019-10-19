@@ -16,7 +16,7 @@ export default {
   },
   created() {
     console.log(process.env);
-    console.log("anjing");
+    console.log("ANjing");
   }
 };
 </script>
