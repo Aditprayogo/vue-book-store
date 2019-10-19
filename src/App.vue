@@ -1,36 +1,52 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
+    <v-app-bar app color="teal lighten-3" dark>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Vueshop</v-toolbar-title>
+
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
+
+      <v-btn icon>
+        <v-badge color="orange" overlap>
+          <template v-slot:badge>
+            <span>3</span>
+          </template>
+          <v-icon>mdi-cart</v-icon>
+        </v-badge>
       </v-btn>
+      <!--end vbar  -->
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <HelloWorld />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import HelloWorld from "./components/HelloWorld";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld,
+    HelloWorld
   },
   data: () => ({
     //
   }),
+  created() {
+    console.log(process.env);
+  },
+  mounted() {
+    this.axios
+      .get("https://api.jsonbin.io/b/5b42acd44d5ea95c8ba22392")
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 };
 </script>
