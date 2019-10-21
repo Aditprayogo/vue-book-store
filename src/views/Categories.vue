@@ -10,12 +10,16 @@
             </v-img>
           </v-card>
         </v-flex>
-        <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="5"></v-pagination>
       </v-layout>
     </v-container>
+
+    <template>
+      <div class="text-center">
+        <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="5"></v-pagination>
+      </div>
+    </template>
   </div>
 </template>
-
 <script>
 export default {
   data: () => ({
@@ -35,8 +39,9 @@ export default {
           let { data } = response.data;
           let { meta } = response.data;
           this.categories = data;
-          this.page = meta.current_page;
+          // jumlah halaman di dapat dari meta endpoint categories
           this.lengthPage = meta.last_page;
+          this.page = meta.current_page;
         })
         .catch(error => {
           let { responses } = error;

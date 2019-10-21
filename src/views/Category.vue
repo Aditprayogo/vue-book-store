@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-container class="ma-0 pa-0" grid-list-sm>
+    <v-card :to="'/category/'+ category.slug" v-if="category.slug">
+      <v-img :src="getImage('/categories/'+category.image)" class="white--text">
+        <v-card-title class="fill-height align-end" v-text="category.name"></v-card-title>
+      </v-img>
+    </v-card>
+
+    <v-container class="ma-0 pa-0" grid-list-sm v-if="books">
       <v-subheader>All Books</v-subheader>
       <v-layout wrap>
         <v-flex v-for="(book) in books" :key="`book-`+book.id" xs6>
@@ -19,11 +25,11 @@
     </template>
   </div>
 </template>
-
 <script>
 export default {
   data: () => ({
-    books: [],
+    category: {}, // objek category
+    books: [], // daftar buku pada category tersebut
     page: 0,
     lengthPage: 0
   }),
@@ -32,15 +38,19 @@ export default {
   },
   methods: {
     go() {
-      let url = "/books?page=" + this.page;
+      let { slug } = this.$route.params;
+      let url = "/categories/slug/" + slug;
+      url = url + "?page=" + this.page;
+      url = encodeURI(url);
       this.axios
         .get(url)
         .then(response => {
           let { data } = response.data;
-          let { meta } = response.data;
-          this.books = data;
-          this.page = meta.current_page;
-          this.lengthPage = meta.last_page;
+          let category = data;
+          this.category = category;
+          this.books = category.books.data;
+          this.page = category.books.current_page;
+          this.lengthPage = category.books.last_page;
         })
         .catch(error => {
           let { responses } = error;

@@ -47,14 +47,19 @@
       app
       color="deep-purple accent-4"
       dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-      fade-img-on-scroll
+      src="https://picsum.photos/1920/1080?random"
       v-else
     >
+      <template v-slot:img="{ props }">
+        <v-img v-bind="props" gradient="to top right, rgba(19,89,122,.5), rgba(128,208,199,.8)"></v-img>
+      </template>
+
       <v-btn icon @click.stop="$router.go(-1)">
         <v-icon>mdi-arrow-left-circle</v-icon>
       </v-btn>
+
       <v-spacer></v-spacer>
+
       <v-btn icon to="/about">
         <v-badge color="orange" overlap>
           <template v-slot:badge>
