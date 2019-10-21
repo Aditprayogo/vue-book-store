@@ -67,7 +67,7 @@ export default {
       });
 
     this.axios
-      .get("/books/top/4")
+      .get("/books/top/6")
       .then(response => {
         let { data } = response.data;
         this.books = data;

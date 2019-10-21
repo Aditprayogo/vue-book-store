@@ -6,6 +6,7 @@
       dark
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
       fade-img-on-scroll
+      v-if="isHome"
     >
       <template v-slot:img="{ props }">
         <v-img v-bind="props" gradient="to top right, rgba(55,236,186,.7), rgba(25,32,72,.7)"></v-img>
@@ -40,6 +41,28 @@
       ></v-text-field>
 
       <!-- end v bar -->
+    </v-app-bar>
+
+    <v-app-bar
+      app
+      color="deep-purple accent-4"
+      dark
+      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+      fade-img-on-scroll
+      v-else
+    >
+      <v-btn icon @click.stop="$router.go(-1)">
+        <v-icon>mdi-arrow-left-circle</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn icon to="/about">
+        <v-badge color="orange" overlap>
+          <template v-slot:badge>
+            <span>3</span>
+          </template>
+          <v-icon>mdi-cart</v-icon>
+        </v-badge>
+      </v-btn>
     </v-app-bar>
 
     <!-- Drawer side -->
@@ -135,6 +158,11 @@ export default {
     ],
     mini: false,
     guest: false
-  })
+  }),
+  computed: {
+    isHome() {
+      return this.$route.path === "/";
+    }
+  }
 };
 </script>
