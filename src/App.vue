@@ -16,7 +16,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-title>Vueshop</v-toolbar-title>
+      <v-toolbar-title>BookStore</v-toolbar-title>
 
       <v-spacer></v-spacer>
 

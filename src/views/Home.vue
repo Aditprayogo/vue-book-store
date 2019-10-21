@@ -8,7 +8,6 @@
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
-
       <!-- wrap -->
       <v-layout wrap>
         <v-flex v-for="category in categories" :key="`category-`+category.id" xs6>
@@ -32,12 +31,14 @@
         </v-btn>
       </div>
       <v-layout wrap>
-        <v-flex v-for="book in books" :key="`book-`+book.id" xs6>
+        <v-flex v-for="book in books" :key="`book-`+book.id" xs6 md6 sm12>
+          <!-- card -->
           <v-card :to="'/book/'+ book.slug">
             <v-img :src="getImage('/books/'+book.cover)" class="white--text">
               <v-card-title class="fill-height align-end" v-text="book.title"></v-card-title>
             </v-img>
           </v-card>
+          <!-- /card -->
         </v-flex>
       </v-layout>
     </v-container>
