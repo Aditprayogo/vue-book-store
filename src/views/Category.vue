@@ -18,11 +18,13 @@
         </v-flex>
       </v-layout>
     </v-container>
+
     <template>
       <div class="text-center">
         <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="5"></v-pagination>
       </div>
     </template>
+    <!--  -->
   </div>
 </template>
 <script>
