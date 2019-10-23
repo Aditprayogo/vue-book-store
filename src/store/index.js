@@ -8,6 +8,7 @@ export default new Vuex.Store({
         carts: [],
     },
     mutations: {
+        // payload berfungsi untuk menambahkan parameter atau penambahan argumen
         insert: (state, payload) => {
             state.carts.push({
                 id: payload.id,
@@ -41,6 +42,17 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        add: ({ state, commit }, payload) => {
+            // mendeteksi apakah data yang diinput ada pada carts?
+            let cartItem = state.carts.find(item => item.id === payload.id)
+            // jika tidak ada maka mutation insert dijalankan
+            if (!cartItem) {
+                commit('insert', payload)
+            } else {
+                cartItem.quantity++
+                commit('update', cartItem)
+            }
+        }
     },
     modules: {
     },
