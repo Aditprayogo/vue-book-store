@@ -9,6 +9,8 @@
       </v-layout>
     </v-container>
 
+    <v-spacer></v-spacer>
+
     <template>
       <div class="text-center">
         <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="5"></v-pagination>

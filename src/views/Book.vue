@@ -97,7 +97,7 @@ export default {
         });
     },
     ...mapActions({
-      add: "add"
+      add: "cart/add"
     })
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card :to="'/book/'+ book.slug" shaped="shaped">
+    <v-card :to="'/book/'+ book.slug" shaped="shaped" elevation="20" class="rounded-card">
       <v-img :src="getImage('/books/'+book.cover)" class="white--text" height="200px">
         <v-card-title class="fill-height align-end" v-text="book.title"></v-card-title>
       </v-img>
@@ -28,3 +28,9 @@ export default {
   })
 };
 </script>
+
+<style lang="stylus" scoped>
+.rounded-card {
+  border-radius: 20px;
+}
+</style>
