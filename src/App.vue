@@ -23,8 +23,8 @@
 
       <v-btn icon to="/about">
         <v-badge color="orange" overlap>
-          <template v-slot:badge>
-            <span>3</span>
+          <template v-slot:badge v-if="countCart>0">
+            <span>{{ countCart }}</span>
           </template>
           <v-icon>mdi-cart</v-icon>
         </v-badge>
@@ -60,10 +60,11 @@
 
       <v-spacer></v-spacer>
 
+      <!-- icon keranjang belanja -->
       <v-btn icon to="/about">
         <v-badge color="orange" overlap>
-          <template v-slot:badge>
-            <span>3</span>
+          <template v-slot:badge v-if="countCart>0">
+            <span>{{ countCart }}</span>
           </template>
           <v-icon>mdi-cart</v-icon>
         </v-badge>
@@ -123,6 +124,8 @@
     </v-card>
     <!-- end side drawer -->
 
+    <alert />
+
     <!-- Content BOdy -->
     <v-content>
       <v-container fluid>
@@ -146,12 +149,11 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
-
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   components: {
-    // HelloWorld
+    Alert: () => import("./components/Alert.vue")
   },
   data: () => ({
     //
@@ -167,7 +169,10 @@ export default {
   computed: {
     isHome() {
       return this.$route.path === "/";
-    }
+    },
+    ...mapGetters({
+      countCart: "cart/count"
+    })
   }
 };
 </script>

@@ -75,10 +75,14 @@ export default {
   created() {
     this.go();
   },
-
   methods: {
     buy() {
       this.add(this.book);
+      this.setAlert({
+        status: true,
+        color: "success",
+        text: "Added to cart"
+      });
     },
     go() {
       let { slug } = this.$route.params;
@@ -97,7 +101,8 @@ export default {
         });
     },
     ...mapActions({
-      add: "cart/add"
+      add: "cart/add",
+      setAlert: "alert/set"
     })
   }
 };
