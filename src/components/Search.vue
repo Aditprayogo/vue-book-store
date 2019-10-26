@@ -8,7 +8,7 @@
         hide-details
         append-icon="mdi-microphone"
         flat
-        autofocus="true"
+        autofocus
         label="Search"
         prepend-inner-icon="mdi-magnify"
         v-model="keyword"
@@ -17,10 +17,12 @@
     </v-toolbar>
     <v-card-text>
       <v-subheader v-if="keyword.length>0">Result search "{{ keyword }}"</v-subheader>
+
       <v-alert
         :value="books.length==0 && keyword.length>0"
         color="warning"
       >Sorry, but no results were found.</v-alert>
+
       <!-- Hasil pencarian ditampilkan di sini -->
       <v-container class="ma-0 pa-0" grid-list-sm>
         <v-layout wrap>
@@ -38,7 +40,7 @@
 export default {
   name: "search",
   components: {
-    BookItem: () => import("./BookItem")
+    BookItem: () => import("@/components/BookItem.vue")
   },
   data() {
     return {

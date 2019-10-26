@@ -34,11 +34,11 @@
         slot="extension"
         hide-details
         append-icon="mdi-microphone"
-        label="Search"
-        prepend-inner-icon="mdi-magnify"
         solo-inverted
         flat
-        @click="dialog = true"
+        label="Search"
+        prepend-inner-icon="mdi-magnify"
+        @click="setDialogComponent('search')"
       ></v-text-field>
 
       <!-- end v bar -->
@@ -75,6 +75,7 @@
     <!-- Drawer side -->
     <v-card>
       <v-navigation-drawer app v-model="drawer" white>
+        <!--  -->
         <v-list dense>
           <!-- jika user suda login -->
           <v-list-item v-if="!guest">
@@ -125,11 +126,15 @@
     </v-card>
     <!-- end side drawer -->
 
+    <!-- alert notif -->
     <alert />
 
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="scaletransition">
-      <search @closed="closeDialog" />
-    </v-dialog>
+    <!-- search dialog -->
+    <keep-alive>
+      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialogbottom-transition">
+        <component :is="currentComponent" @closed="setDialogStatus"></component>
+      </v-dialog>
+    </keep-alive>
 
     <!-- Content BOdy -->
     <v-content>
@@ -154,7 +159,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "App",
   components: {
@@ -164,7 +169,6 @@ export default {
   data: () => ({
     //
     drawer: false,
-    dialog: false,
     menus: [
       { title: "Home", icon: "mdi-home-city", route: "/" },
       { title: "My Account", icon: "mdi-account", route: "/about" },
@@ -172,6 +176,12 @@ export default {
     ],
     mini: false
   }),
+  methods: {
+    ...mapActions({
+      setDialogStatus: "dialog/setStatus",
+      setDialogComponent: "dialog/setComponent"
+    })
+  },
   computed: {
     isHome() {
       return this.$route.path === "/";
@@ -179,12 +189,17 @@ export default {
     ...mapGetters({
       countCart: "cart/count",
       guest: "auth/guest",
-      user: "auth/user"
-    })
-  },
-  methods: {
-    closeDialog(value) {
-      this.dialog = value;
+      user: "auth/user",
+      dialogStatus: "dialog/status",
+      currentComponent: "dialog/component"
+    }),
+    dialog: {
+      get() {
+        return this.dialogStatus;
+      },
+      set(value) {
+        this.setDialogStatus(value);
+      }
     }
   }
 };
