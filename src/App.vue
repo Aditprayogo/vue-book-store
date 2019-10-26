@@ -34,10 +34,11 @@
         slot="extension"
         hide-details
         append-icon="mdi-microphone"
-        flat
         label="Search"
         prepend-inner-icon="mdi-magnify"
         solo-inverted
+        flat
+        @click="dialog = true"
       ></v-text-field>
 
       <!-- end v bar -->
@@ -126,6 +127,10 @@
 
     <alert />
 
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="scaletransition">
+      <search @closed="closeDialog" />
+    </v-dialog>
+
     <!-- Content BOdy -->
     <v-content>
       <v-container fluid>
@@ -153,26 +158,34 @@ import { mapGetters } from "vuex";
 export default {
   name: "App",
   components: {
-    Alert: () => import("./components/Alert.vue")
+    Alert: () => import("./components/Alert.vue"),
+    Search: () => import("./components/Search.vue")
   },
   data: () => ({
     //
     drawer: false,
+    dialog: false,
     menus: [
       { title: "Home", icon: "mdi-home-city", route: "/" },
       { title: "My Account", icon: "mdi-account", route: "/about" },
       { title: "Users", icon: "mdi-account-group-outline" }
     ],
-    mini: false,
-    guest: false
+    mini: false
   }),
   computed: {
     isHome() {
       return this.$route.path === "/";
     },
     ...mapGetters({
-      countCart: "cart/count"
+      countCart: "cart/count",
+      guest: "auth/guest",
+      user: "auth/user"
     })
+  },
+  methods: {
+    closeDialog(value) {
+      this.dialog = value;
+    }
   }
 };
 </script>

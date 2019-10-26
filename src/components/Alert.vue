@@ -24,21 +24,24 @@ export default {
       set(value) {
         this.setAlert({
           status: value,
+          //
           color: "success",
           text: "test"
         });
       }
-    },
-    methods: {
-      ...mapActions({
-        setAlert: "alert/set"
-      }),
-      close() {
-        this.setAlert({
-          status: false
-        });
-      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      setAlert: "alert/set"
+    }),
+    close() {
+      this.setAlert({
+        status: false
+      });
     }
   }
 };
 </script>
+
+

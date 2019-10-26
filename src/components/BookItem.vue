@@ -9,7 +9,9 @@
         <v-spacer></v-spacer>
 
         <span class="orange--text">Rp {{ book.price.toLocaleString('idID') }}</span>
+
         <v-spacer></v-spacer>
+
         <v-icon>mdi-eye</v-icon>
         {{ book.views }}
       </v-card-actions>
