@@ -91,7 +91,7 @@
 
           <!-- Jika user belum login -->
           <div class="pa-2" v-if="guest">
-            <v-btn block color="primary" class="mb-1">
+            <v-btn block color="primary" class="mb-1" @click="setDialogComponent('login')">
               <v-icon left>mdi-lock</v-icon>Login
             </v-btn>
             <v-btn block color="success">
@@ -164,7 +164,8 @@ export default {
   name: "App",
   components: {
     Alert: () => import("./components/Alert.vue"),
-    Search: () => import("./components/Search.vue")
+    Search: () => import("./components/Search.vue"),
+    Login: () => import("./components/Login.vue")
   },
   data: () => ({
     //

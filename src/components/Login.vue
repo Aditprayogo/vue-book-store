@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       valid: true,
-      email: "lou56@example.org",
+      email: "talia56@example.net",
       //   rules for email
       emailRules: [
         v => !!v || "E-mail is required",
@@ -69,6 +69,56 @@ export default {
         v => (v && v.length >= 6) || "Min 6 characters"
       ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      user: "auth/user"
+    })
+  },
+  methods: {
+    ...mapActions({
+      setAlert: "alert/set",
+      setAuth: "auth/set"
+    }),
+    submit() {
+      if (this.$refs.form.validate()) {
+        let formData = {
+          email: this.email,
+          password: this.password
+        };
+        this.axios
+          .post("/login", formData)
+          .then(response => {
+            let { data } = response.data;
+            this.setAuth(data);
+            if (this.user.id > 0) {
+              this.setAlert({
+                status: true,
+                color: "success",
+                text: "Login berhasil"
+              });
+              this.close();
+            } else {
+              this.setAlert({
+                status: true,
+                color: "error",
+                text: "Login failed"
+              });
+            }
+          })
+          .catch(error => {
+            let responses = error.response;
+            this.setAlert({
+              status: true,
+              color: "error",
+              text: responses.data.message
+            });
+          });
+      }
+    },
+    close() {
+      this.$emit("closed", false);
+    }
   }
 };
 </script>
