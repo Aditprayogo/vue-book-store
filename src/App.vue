@@ -176,9 +176,12 @@ export default {
     ],
     mini: false
   }),
+  //   end data
   methods: {
     ...mapActions({
+      // menutup dialog
       setDialogStatus: "dialog/setStatus",
+      //   mengganti component
       setDialogComponent: "dialog/setComponent"
     })
   },
@@ -193,6 +196,9 @@ export default {
       dialogStatus: "dialog/status",
       currentComponent: "dialog/component"
     }),
+    // untuk set dialog akan tampil atau tidak
+    // karena menggunakan v-dialog menggunakan v-model
+    // yang harus menggunakan set dan get
     dialog: {
       get() {
         return this.dialogStatus;

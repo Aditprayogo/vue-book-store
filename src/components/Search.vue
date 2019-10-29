@@ -15,6 +15,7 @@
         @input="doSearch"
       ></v-text-field>
     </v-toolbar>
+
     <v-card-text>
       <v-subheader v-if="keyword.length>0">Result search "{{ keyword }}"</v-subheader>
 
