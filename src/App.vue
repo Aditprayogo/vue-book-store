@@ -116,7 +116,7 @@
         <!-- btn logout -->
         <template v-slot:append v-if="!guest">
           <div class="pa-2">
-            <v-btn block color="red" dark>
+            <v-btn block color="red" dark @click="logout">
               <v-icon left>mdi-lock</v-icon>Logout
             </v-btn>
           </div>
@@ -150,7 +150,7 @@
       <v-footer absolute app>
         <v-card-text class="text-center">
           &copy; {{ new Date().getFullYear() }} —
-          <strong>Vueshop</strong>
+          <strong>Bookstore</strong>
         </v-card-text>
       </v-footer>
     </v-card>
@@ -183,8 +183,35 @@ export default {
       // menutup dialog
       setDialogStatus: "dialog/setStatus",
       //   mengganti component
-      setDialogComponent: "dialog/setComponent"
-    })
+      setDialogComponent: "dialog/setComponent",
+      setAuth: "auth/set",
+      setAlert: "alert/set"
+    }),
+    logout() {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + this.user.api_token
+        }
+      };
+      this.axios
+        .post("/logout", {}, config)
+        .then(() => {
+          this.setAuth({}); // kosongkan auth ketika logout
+          this.setAlert({
+            status: true,
+            color: "success",
+            text: "Logout successfully"
+          });
+        })
+        .catch(error => {
+          let { data } = error.response;
+          this.setAlert({
+            status: true,
+            color: "error",
+            text: data.message
+          });
+        });
+    }
   },
   computed: {
     isHome() {
