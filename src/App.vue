@@ -62,7 +62,7 @@
       <v-spacer></v-spacer>
 
       <!-- icon keranjang belanja -->
-      <v-btn icon to="/about">
+      <v-btn icon @click="setDialogComponent('cart')">
         <v-badge color="orange" overlap>
           <template v-slot:badge v-if="countCart>0">
             <span>{{ countCart }}</span>
@@ -166,7 +166,8 @@ export default {
     Alert: () => import("./components/Alert.vue"),
     Search: () => import("./components/Search.vue"),
     Login: () => import("./components/Login.vue"),
-    Register: () => import("./components/Register.vue")
+    Register: () => import("./components/Register.vue"),
+    Cart: () => import("./components/Cart.vue")
   },
   data: () => ({
     //
