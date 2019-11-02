@@ -29,8 +29,10 @@ export default {
             if (payload.quantity <= 0) {
                 state.carts.splice(idx, 1)
             }
-
-        }
+        },
+        set: (state, payload) => {
+            state.carts = payload
+        },
     },
     actions: {
         add: ({ state, commit }, payload) => {
@@ -44,6 +46,21 @@ export default {
                 cartItem.quantity++
                 commit('update', cartItem)
             }
+        },
+        remove: ({ state, commit }, payload) => {
+
+            let cartItem = state.carts.find(item => item.id == payload.id)
+            // jika ada maka di delete --
+            if (cartItem) {
+
+                cartItem.quantity--
+                commit('update', cartItem)
+
+            }
+        },
+
+        set: ({ commit }, payload) => {
+            commit('set', payload)
         }
 
     },
@@ -51,7 +68,31 @@ export default {
         carts: state => state.carts,
         count: (state) => {
             return state.carts.length
-        }
+        },
+        // untuk menghitung total harga
+        totalPrice: (state) => {
+            let total = 0
+            state.carts.forEach(function (cart) {
+                total = total + cart.price * cart.quantity
+            })
+            return total
+        },
+        // menghitung total quantity
+        totalQuantity: (state) => {
+            let total = 0
+            state.carts.forEach(function (cart) {
+                total = total + cart.quantity
+            })
+            return total
+        },
+        totalWeight: (state) => {
+            let total = 0
+            state.carts.forEach(function (cart) {
+                total += cart.weight
+            })
+            return total
+        },
+
     }
 
 }

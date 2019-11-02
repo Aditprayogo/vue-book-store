@@ -21,7 +21,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon to="/about">
+      <v-btn icon @click="setDialogComponent('cart')">
         <v-badge color="orange" overlap>
           <template v-slot:badge v-if="countCart>0">
             <span>{{ countCart }}</span>
@@ -94,7 +94,7 @@
             <v-btn block color="primary" class="mb-1" @click="setDialogComponent('login')">
               <v-icon left>mdi-lock</v-icon>Login
             </v-btn>
-            <v-btn block color="success">
+            <v-btn block color="success" @click="setDialogComponent('register')">
               <v-icon left>mdi-account</v-icon>Register
             </v-btn>
           </div>
@@ -165,7 +165,8 @@ export default {
   components: {
     Alert: () => import("./components/Alert.vue"),
     Search: () => import("./components/Search.vue"),
-    Login: () => import("./components/Login.vue")
+    Login: () => import("./components/Login.vue"),
+    Register: () => import("./components/Register.vue")
   },
   data: () => ({
     //
