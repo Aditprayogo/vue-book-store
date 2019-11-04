@@ -76,7 +76,9 @@ router.beforeEach((to, from, next) => {
                 color: 'error',
             })
             // tampilkan form login
+            store.dispatch('setPrevUrl', to.path)
             store.dispatch('dialog/setComponent', 'login')
+            store.dispatch('dialog/setStatus', true)
         }
         else {
             next()

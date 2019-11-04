@@ -72,7 +72,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "auth/user"
+      user: "auth/user",
+      prevUrl: "prevUrl"
     })
   },
   methods: {
@@ -97,6 +98,7 @@ export default {
                 color: "success",
                 text: "Login berhasil"
               });
+              if (this.prevUrl.length > 0) this.$router.push(this.prevUrl);
               this.close();
             } else {
               this.setAlert({
@@ -107,11 +109,11 @@ export default {
             }
           })
           .catch(error => {
-            let responses = error.response;
+            let { data } = error.response;
             this.setAlert({
               status: true,
               color: "error",
-              text: responses.data.message
+              text: data.message
             });
           });
       }
