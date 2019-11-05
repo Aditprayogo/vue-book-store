@@ -15,6 +15,8 @@ export default {
     actions: {
         setProvinces: ({ commit }, value) => {
             commit('setProvinces', value)
+
+
         },
         setCities: ({ commit }, value) => {
             commit('setCities', value)

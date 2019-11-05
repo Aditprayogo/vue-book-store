@@ -9,6 +9,7 @@
             <v-textarea label="Address" v-model="address" required auto-grow rows="3"></v-textarea>
 
             <v-text-field label="Phone" v-model="phone" required append-icon="mdi-phone"></v-text-field>
+
             <v-select
               v-model="province_id"
               :items="provinces"
@@ -18,6 +19,7 @@
               persistent-hint
               single-line
             ></v-select>
+            <!--  -->
             <v-select
               v-model="city_id"
               v-if="province_id>0"
@@ -28,6 +30,7 @@
               persistent-hint
               single-line
             ></v-select>
+            <!--  -->
           </v-form>
           <v-card-actions>
             <v-btn color="success" dark @click="saveShipping">
@@ -56,7 +59,14 @@ export default {
     ...mapGetters({
       user: "auth/user",
       provinces: "region/provinces",
-      cities: "region/cities"
+      cities: "region/cities",
+
+      // tambahkan ini
+      carts: "cart/carts",
+      countCart: "cart/count",
+      totalPrice: "cart/totalPrice",
+      totalQuantity: "cart/totalQuantity",
+      totalWeight: "cart/totalWeight"
     }),
     citiesByProvince() {
       let province_id = this.province_id;
@@ -112,6 +122,7 @@ export default {
     this.phone = this.user.phone;
     this.city_id = this.user.city_id;
     this.province_id = this.user.province_id;
+
     if (this.provinces && this.provinces.length == 0) {
       this.axios.get("/provinces").then(response => {
         let { data } = response.data;

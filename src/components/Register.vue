@@ -21,6 +21,7 @@
           append-icon="mdi-user"
         ></v-text-field>
         <!-- textfield untuk email -->
+
         <v-text-field
           v-model="email"
           :rules="emailRules"
@@ -29,6 +30,7 @@
           append-icon="mdi-email"
         ></v-text-field>
         <!-- textfield untuk password -->
+
         <v-text-field
           v-model="password"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
