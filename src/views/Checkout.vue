@@ -41,6 +41,41 @@
         </v-container>
       </v-card>
     </div>
+
+    <v-subheader>Your Shopping Cart</v-subheader>
+    <div v-if="countCart>0">
+      <v-card flat>
+        <v-list three-line v-if="countCart>0">
+          <template v-for="(item, index) in carts">
+            <v-list-item :key="'cart'+index">
+              <v-list-item-avatar>
+                <v-img :src="getImage('/books/'+item.cover)"></v-img>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title v-html="item.title"></v-list-item-title>
+                <v-list-item-subtitle>
+                  Rp. {{ item.price.toLocaleString('id-ID') }}
+                  ({{ item.weight }} kg)
+                  <span
+                    style="float:right"
+                  >{{ item.quantity }}</span>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+        </v-list>
+        <v-container>
+          <v-card-actions>
+            Subtotal
+            <v-spacer />
+            Rp. {{ totalPrice.toLocaleString('id-ID') }}
+          </v-card-actions>
+        </v-container>
+      </v-card>
+    </div>
+
+    <!--  -->
   </div>
 </template>
 <script>
