@@ -51,7 +51,7 @@
               <v-list-item-avatar>
                 <v-img :src="getImage('/books/'+item.cover)"></v-img>
               </v-list-item-avatar>
-
+              <!--  -->
               <v-list-item-content>
                 <v-list-item-title v-html="item.title"></v-list-item-title>
                 <v-list-item-subtitle>
