@@ -42,6 +42,7 @@
       </v-card>
     </div>
 
+    <!--  -->
     <v-subheader>Your Shopping Cart</v-subheader>
     <div v-if="countCart>0">
       <v-card flat>
