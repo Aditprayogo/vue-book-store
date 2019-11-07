@@ -24,7 +24,7 @@
               v-model="city_id"
               v-if="province_id>0"
               :items="citiesByProvince"
-              item-text="city_name"
+              item-text="city"
               item-value="id"
               label="City"
               persistent-hint
@@ -108,7 +108,9 @@ export default {
     citiesByProvince() {
       let province_id = this.province_id;
       return this.cities.filter(city => {
-        if (city.province_id == province_id) return city;
+        if (city.province_id == province_id) {
+          return city.city;
+        }
       });
     }
   },

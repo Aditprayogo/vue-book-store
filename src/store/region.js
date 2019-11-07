@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state: {
         provinces: [],
-        cities: []
+        cities: [],
     },
     mutations: {
         setProvinces: (state, value) => {
@@ -10,22 +10,18 @@ export default {
         },
         setCities: (state, value) => {
             state.cities = value
-        }
+        },
     },
     actions: {
         setProvinces: ({ commit }, value) => {
             commit('setProvinces', value)
-
-
         },
         setCities: ({ commit }, value) => {
             commit('setCities', value)
         },
-
     },
     getters: {
         provinces: state => state.provinces,
         cities: state => state.cities,
-
     }
-}
+} 
