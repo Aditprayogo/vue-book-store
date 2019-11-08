@@ -4,6 +4,8 @@ export default {
     state: {
         status: false,
         component: 'search', //search login or other
+
+
     },
     mutations: {
         setStatus: (state, status) => {
@@ -11,7 +13,9 @@ export default {
         },
         setComponent: (state, component) => {
             state.component = component
-        }
+        },
+
+
     },
     actions: {
         setStatus: ({ commit }, status) => {
@@ -20,11 +24,14 @@ export default {
         setComponent: ({ commit }, component) => {
             commit('setComponent', component)
             commit('setStatus', true)
-        }
+        },
+
+
     },
     getters: {
         status: state => state.status,
-        component: state => state.component
+        component: state => state.component,
+
     }
 
 

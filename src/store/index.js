@@ -10,17 +10,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        prevUrl: ''
+        prevUrl: '',
+        payment: []
     },
     mutations: {
         setPrevUrl: (state, value) => {
             state.prevUrl = value
-        }
+        },
+        setPayment: (state, value) => {
+            state.payment = value
+        },
+
     },
     actions: {
         setPrevUrl: ({ commit }, value) => {
             commit('setPrevUrl', value)
-        }
+        },
+        setPayment: ({ commit }, value) => {
+            commit('setPayment', value)
+        },
     },
     modules: {
         cart,
@@ -30,6 +38,7 @@ export default new Vuex.Store({
         region
     },
     getters: {
-        prevUrl: state => state.prevUrl
+        prevUrl: state => state.prevUrl,
+        payment: state => state.payment,
     }
 })
