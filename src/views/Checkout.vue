@@ -184,6 +184,7 @@ export default {
       });
     }
   },
+  //   end computed
   methods: {
     ...mapActions({
       setAlert: "alert/set",
@@ -312,6 +313,8 @@ export default {
       this.dialogConfirm = false;
     }
   },
+  //   end methods
+  //   hook created
   created() {
     this.name = this.user.name;
     this.address = this.user.address;
