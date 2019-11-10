@@ -62,6 +62,13 @@ const routes = [
             '../views/Payment.vue'),
         meta: { auth: true }
     },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: () => import( /* webpackChunkName: "profile" */
+            '../views/Profile.vue'),
+        meta: { auth: true }
+    },
 
 
 
