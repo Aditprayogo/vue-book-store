@@ -55,6 +55,13 @@ const routes = [
             '../views/Checkout.vue'),
         meta: { auth: true } // penandanya ini gans
     },
+    {
+        path: '/payment',
+        name: 'payment',
+        component: () => import( /* webpackChunkName: "payment" */
+            '../views/Payment.vue'),
+        meta: { auth: true }
+    },
 
 
 
